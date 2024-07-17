@@ -78,5 +78,17 @@ namespace S24Week10DisconnectedModel
 
             FillDataSet();
         }
+
+        public void DeleteProduct(int id)
+        {
+            var row = tbl.Rows.Find(id);
+
+            row.Delete();
+
+            adp.DeleteCommand = cmdBuilder.GetDeleteCommand();
+            adp.Update(tbl);
+
+            FillDataSet();
+        }
     }
 }
