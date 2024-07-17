@@ -64,5 +64,19 @@ namespace S24Week10DisconnectedModel
 
             FillDataSet();
         }
+
+        public void UpdateProduct(int id, string name, decimal price, short quantity)
+        {
+            var row = tbl.Rows.Find(id);
+
+            row["ProductName"] = name;
+            row["UnitPrice"] = price;
+            row["UnitsInStock"] = quantity;
+
+            adp.UpdateCommand = cmdBuilder.GetUpdateCommand();
+            adp.Update(tbl);
+
+            FillDataSet();
+        }
     }
 }
